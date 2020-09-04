@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      body {
+        font-family: "Courier New", Courier, monospace;
+        font-weight: 500;
+      }
+
+      a {
+        color: black;
+        text-decoration: none;
+      }
+
+      a::before {
+        content: "🔗";
+        padding-right: 10px;
+      }
+
+      a:hover,
+      a:focus {
+        color: blue;
+        text-decoration: underline;
+      }
+
+      ul {
+        list-style: none;
+      }
+      li {
+        text-align: end;
+        border-bottom: 1px solid black;
+        margin-bottom: 10px;
+        line-height: 25px;
+      }
+      li a {
+        text-align: start;
+        width: calc(100% - 30px);
+        display: inline-block;
+      }
+    </style>
+    <h2>Site Scheme</h2>
+    <ul>
+      <li><a href="">global object (window)</a> ❗️</li>
+      <li><a href="type_system">Type system (primitive/object, null/undefined).</a> ✅</li>
+      <li><a href="variables">Variables, Global vs local, let, const, Hoisting</a> ✅</li>
+      <li><a href="type_coercion">Type Coercion, Operators(==/===)</a> ✅</li>
+      <li><a href="logical_operators">Operators (&&/||)</a> ✅</li>
+
+      <li>
+        <a href="iterating_arrays_objects">Iterating over arrays/objects (map/reduce), generators, iterators.</a> ✅
+      </li>
+      <li><a href="closures">Closures (lifetime, gotchas with loops), Recursion</a> ✅</li>
+
+      <li><a href="factory_vs_onstructor.js">constructors vs factories</a> ✅</li>
+      <li>
+        <a href="prototype"
+          >Prototype, inheritance, properties (non-enumerable, constants, getters/setters), Operators (delete)</a
+        >✅
+      </li>
+
+      <li><a href="function">Higher-order functions, arrow, arguments, this, bind, call/apply, decorators</a> ✅</li>
+      <li><a href="asynchronous">Event loop, timers, promises, workers.</a> ✅</li>
+      <li><a href="errors">Exceptions, ErrorEvent, handling errors with callbacks and promises</a> ✅</li>
+      <li><a href="escaping">Escaping</a> ✅</li>
+      <li><a href="">RegExp, patterns, greediness, capturing, flags</a> ⛔️</li>
+      <li>
+        <a href="">ES6 Modules, class, spread, destructing, templates Custom templates </a>
+        ❗️
+      </li>
+      <li><a href="">reflection, transpilers, proxy</a> ⛔️</li>
+      <li><a href="symbol">Symbol</a> ✅</li>
+      <li>
+        <a href="">Classes, Abstract classes, Compositional classes, Interfaces, Transpilers</a>
+        ⛔️
+      </li>
+    </ul>
+
+    <!-- <script src="./math.js"></script> -->
+    <!-- <script src="./array.js"></script> -->
+    <!-- <script src="./global_vs_local.js"></script> -->
+    <script src="./errors.js"></script>
+  </body>
+</html>

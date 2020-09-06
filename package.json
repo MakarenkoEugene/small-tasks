@@ -4,7 +4,8 @@
   "description": "",
   "main": "iterating_arrays_objects.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev_react": "parcel ./react/index.html"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/MakarenkoEugene/small-tasks/issues"
   },
-  "homepage": "https://github.com/MakarenkoEugene/small-tasks#readme"
+  "homepage": "https://github.com/MakarenkoEugene/small-tasks#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
 }

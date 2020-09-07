@@ -1,5 +1,5 @@
 import React from "react";
-// 1. Рендеринг элементов
+// 1. Rendering elements
 
 // Элементы — мельчайшие кирпичики React-приложений.
 

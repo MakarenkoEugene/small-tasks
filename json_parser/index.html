@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      p {
+        display: inline-block;
+      }
+
+      #root {
+        min-width: 600px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      #root > div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: stretch;
+
+        border-bottom: 1px solid black;
+      }
+
+      #root > div > p {
+        font-size: 24px;
+        width: 150px;
+        margin-left: 10px;
+      }
+
+      #root > div > div {
+        display: flex;
+        flex-direction: column;
+
+        border-left: 1px solid black;
+      }
+
+      #root > div > div > div {
+        display: flex;
+        flex-direction: row;
+
+        border-bottom: 1px solid black;
+      }
+      #root > div > div > div > p {
+        padding: 10px;
+      }
+
+      #root > div > div > div:last-child {
+        border-bottom: none;
+      }
+
+      #root > div > div > div > div {
+        display: flex;
+        flex-direction: column;
+        border-left: 1px solid black;
+
+        padding: 10px;
+      }
+      #root > div > div > div > div div {
+        padding: 5px;
+      }
+      #root > div > div > div > div div:not(:only-child):first-child {
+        border-bottom: 1px solid black;
+      }
+      .is_weekend {
+        background-color: rgb(255, 121, 121);
+      }
+    </style>
+    <div id="root"></div>
+    <script>
+      function drowClients(clients) {
+        const root = document.getElementById("root");
+
+        console.log(Object.keys(clients).toString());
+        for (const key in clients) {
+          const client = clients[key];
+
+          const wrap = document.createElement("div");
+          const wrapReservation = document.createElement("div");
+          const pPhone = document.createElement("p");
+          const pName = document.createElement("p");
+
+          pPhone.innerText = key;
+          pName.innerText = client.name;
+
+          wrap.append(pPhone);
+          wrap.append(pName);
+          for (const date in client.reservation) {
+            const divDate = document.createElement("div");
+            const divWrap = document.createElement("div");
+            const pDate = document.createElement("p");
+
+            const deyOfWeek = new Date(date.slice(0, 4), date.slice(4, 6), date.slice(6, 8)).getDay();
+            pDate.innerText = `${date.slice(0, 4)}-${date.slice(4, 6)}-${date.slice(6, 8)}`;
+
+            divDate.className = deyOfWeek === 6 || deyOfWeek === 5 ? "is_weekend" : "";
+            divDate.append(pDate);
+
+            for (const winch in client.reservation[date]) {
+              const divWinch = document.createElement("div");
+              const pWinch = document.createElement("p");
+              const pTime = document.createElement("p");
+
+              pWinch.innerText = `${winch}:__`;
+              pTime.innerText = client.reservation[date][winch];
+
+              divWinch.append(pWinch);
+              divWinch.append(pTime);
+              divWrap.append(divWinch);
+            }
+
+            divDate.append(divWrap);
+            wrapReservation.append(divDate);
+            wrap.append(wrapReservation);
+            root.append(wrap);
+          }
+        }
+      }
+
+      fetch("https://wakebooking.space/ontop/client")
+        .then((res) => res.json())
+        .then((data) => drowClients(data))
+        .catch((err) => console.log(err));
+    </script>
+  </body>
+</html>

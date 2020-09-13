@@ -88,7 +88,12 @@
       function drowClients(clients) {
         const root = document.getElementById("root");
 
-        console.log(Object.keys(clients).toString());
+        console.log(
+          Object.keys(clients).reduce(
+            (accumulator, currentValue) => `${accumulator} 
+        ${currentValue}`
+          )
+        );
         for (const key in clients) {
           const client = clients[key];
 

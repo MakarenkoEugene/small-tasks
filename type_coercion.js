@@ -73,6 +73,15 @@ console.log({} + [] + {} + [1]); // [object Object][object Object]1
 console.log(!+[] + [] + ![]); // truefalse
 
 
+console.log(Object.is(+0, -0)); // false
+console.log(+0 == -0); // true
+console.log(+0 === -0); // true
+
+console.log(Object.is(NaN, NaN)); // true
+console.log(NaN === NaN); // false
+console.log(NaN == NaN); // false
+
+
 console.log(new Date(0) - 0); // 0
 // new Date(0) - 0 => Number(new Date(0)) - 0 => 0 - 0 => 0
 console.log(new Date(100) - 0); // 100

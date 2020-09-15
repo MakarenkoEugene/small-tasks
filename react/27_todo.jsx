@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useCallback, useMemo } from "react";
 import ReactDOM from "react-dom";
 
 const themes = {
@@ -126,6 +126,13 @@ function App() {
   useEffect(() => {
     localStorage.setItem("theme", theme.name);
   }, [theme]);
+
+  const casd = useCallback(() => inputValue + 100, [inputValue]);
+
+  console.log(casd);
+
+  const valueCanBeNumber = useMemo(() => !isNaN(+inputValue), [inputValue]);
+  console.log("valueCanBeNumber", valueCanBeNumber)
 
   return (
     <ThemeContext.Provider value={theme}>

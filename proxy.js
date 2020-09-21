@@ -117,6 +117,7 @@ const userProxy = new Proxy(user1, {
     console.log(`GET ${prop}`);
     return Reflect.get(target, prop, receiver); // (1)
   },
+
   set(target, prop, val, receiver) {
     console.log(`SET ${prop}=${val}`);
     return Reflect.set(target, prop, val, receiver); // (2)
@@ -126,7 +127,7 @@ const userProxy = new Proxy(user1, {
 console.log(userProxy.name); // выводит "GET name"
 console.log((userProxy.name = "Piter")); // выводит "SET name=Piter"
 
-// receiver, the third argument to the get hook. It stores a reference to the correct this context, which needs to be passed to the getter. In this case, it's admin.
+// receiver - третий аргумент ловушки. Он хранит ссылку на правильный контекст this, который необходимо передать получателю. В данном случае это admin.
 
 let userGuest = {
   _name: "Guest",

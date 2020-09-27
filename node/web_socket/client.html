@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form name="publish">
+      <input type="text" name="message" placeholder="Massage" />
+
+      <input type="submit" value="Отправить" />
+    </form>
+
+    <!-- div с сообщениями -->
+    <div id="messages"></div>
+  </body>
+  <script>
+    let socket = new WebSocket("ws://localhost:3000");
+
+    // отправка сообщения из формы
+    document.forms.publish.onsubmit = function () {
+      socket.send(this.message.value);
+      this.message.value = "";
+      return false;
+    };
+
+    // получение сообщения - отобразить данные в div#messages
+    socket.onmessage = function (event) {
+      const { message, clients } = JSON.parse(event.data);
+      console.log("socket.onmessage -> clients", clients);
+      const messageElem = document.createElement("div");
+      messageElem.textContent = message;
+      document.getElementById("messages").prepend(messageElem);
+    };
+  </script>
+</html>

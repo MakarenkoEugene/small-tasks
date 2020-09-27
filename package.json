@@ -5,7 +5,8 @@
   "main": "iterating_arrays_objects.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev_react": "parcel ./react/index.html"
+    "dev_react": "parcel ./react/index.html",
+    "dev": "parcel ./index.html"
   },
   "repository": {
     "type": "git",
@@ -18,9 +19,17 @@
   },
   "homepage": "https://github.com/MakarenkoEugene/small-tasks#readme",
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-react-jsx-source": "^6.22.0",
+    "marked": "^1.1.1",
     "parcel-bundler": "^1.12.4"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "http": "0.0.1-security",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   }

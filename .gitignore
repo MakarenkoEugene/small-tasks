@@ -1,4 +1,8 @@
 dist
 .cache
 node_modules
+.DS_store
+coverage
 package-lock.json
+yarn.lock
+.env

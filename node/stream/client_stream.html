@@ -1,0 +1,55 @@
+<div id="root"></div>
+<div id="t" style="position: absolute; bottom: 0px; width: 90%; color: white; text-align: center"></div>
+<script>
+  // let eventSource = new EventSource("http://localhost:3000/w");
+  // console.log("eventSource", eventSource);
+
+  // eventSource.addEventListener("join", (event) => {
+  //   console.log(`${event.data} зашёл`);
+  // });
+
+  // eventSource.addEventListener("message", (event) => {
+  //   console.log(`Сказал: ${event.data}`);
+  // });
+
+  // eventSource.addEventListener("bye", (event) => {
+  //   console.log(`Сказал: ${event.data}`);
+  // });
+
+  // eventSource.addEventListener("leave", (event) => {
+  //   console.log(`${event.data} вышел`);
+  // });
+
+  const elem = document.getElementById("t");
+  let contentLength,
+    length = 0;
+
+  fetch("http://localhost:3000/w")
+    .then((res) => {
+      contentLength = +res.headers.get("Content-Length");
+      return res.body;
+    })
+    .then((data) => {
+      return data.getReader();
+    })
+    .then(async (reader) => {
+      const data = [];
+
+      while (true) {
+        const { done, value } = await reader.read();
+
+        if (done) break;
+
+        data.push(new TextDecoder("utf-8").decode(value));
+        length += value.length;
+
+        document.getElementById("root").innerHTML = data.join(" ");
+
+        const deg = Math.round(length / (contentLength / 100)) + "%";
+
+        elem.innerHTML = deg;
+        elem.style.background = `linear-gradient(to right, red ${deg}, black ${deg})`;
+      }
+    })
+    .catch((err) => console.log(err));
+</script>
